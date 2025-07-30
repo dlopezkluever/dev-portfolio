@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import { getPosts } from "@/utils/utils";
-import { Meta, Schema, AvatarGroup, Button, Column, Flex, Heading, Media, Text } from "@once-ui-system/core";
+import { Meta, Schema, AvatarGroup, Button, Column, Flex, Heading, Media, Text, Badge, SmartLink, Grid } from "@once-ui-system/core";
 import { baseURL, about, person, work } from "@/resources";
 import { formatDate } from "@/utils/formatDate";
 import { ScrollToHash, CustomMDX } from "@/components";
@@ -74,6 +74,11 @@ export default async function Project({
           Projects
         </Button>
         <Heading variant="display-strong-s">{post.metadata.title}</Heading>
+        {post.metadata.tag && (
+          <Badge background="brand-alpha-weak" paddingX="12" paddingY="4" onBackground="neutral-strong" textVariant="label-default-s">
+            {post.metadata.tag}
+          </Badge>
+        )}
       </Column>
       {post.metadata.images.length > 0 && (
         <Media
@@ -93,6 +98,52 @@ export default async function Project({
         </Flex>
         <CustomMDX source={post.content} />
       </Column>
+      
+      {/* Image Gallery - 2 images per row */}
+      {post.metadata.images.length > 1 && (
+        <Column maxWidth="m" gap="m">
+          <Heading as="h3" variant="heading-strong-l" marginBottom="m">
+            Project Gallery
+          </Heading>
+          <Grid columns={2} gap="m">
+            {post.metadata.images.map((image, index) => (
+              <Media
+                key={index}
+                aspectRatio="16 / 9"
+                radius="m"
+                alt={`${post.metadata.title} - Image ${index + 1}`}
+                src={image}
+                enlarge
+              />
+            ))}
+          </Grid>
+        </Column>
+      )}
+
+      {/* Project Links */}
+      <Column maxWidth="xs" gap="16" marginTop="xl">
+        <Flex gap="24" wrap horizontal="center">
+          {post.metadata.link && (
+            <SmartLink
+              suffixIcon="arrowUpRightFromSquare"
+              style={{ margin: "0", width: "fit-content" }}
+              href={post.metadata.link}
+            >
+              <Text variant="body-default-s">See Project</Text>
+            </SmartLink>
+          )}
+          {post.metadata.github && (
+            <SmartLink
+              suffixIcon="arrowUpRightFromSquare"
+              style={{ margin: "0", width: "fit-content" }}
+              href={post.metadata.github}
+            >
+              <Text variant="body-default-s">See GitHub</Text>
+            </SmartLink>
+          )}
+        </Flex>
+      </Column>
+
       <ScrollToHash />
     </Column>
   );

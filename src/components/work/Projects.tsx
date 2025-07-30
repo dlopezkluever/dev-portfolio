@@ -4,9 +4,10 @@ import { ProjectCard } from "@/components";
 
 interface ProjectsProps {
   range?: [number, number?];
+  maxImages?: number; // Add parameter to control image count
 }
 
-export function Projects({ range }: ProjectsProps) {
+export function Projects({ range, maxImages }: ProjectsProps) {
   let allProjects = getPosts(["src", "app", "work", "projects"]);
 
   const sortedProjects = allProjects.sort((a, b) => {
@@ -19,19 +20,26 @@ export function Projects({ range }: ProjectsProps) {
 
   return (
     <Column fillWidth gap="xl" marginBottom="40" paddingX="l">
-      {displayedProjects.map((post, index) => (
-        <ProjectCard
-          priority={index < 2}
-          key={post.slug}
-          href={`work/${post.slug}`}
-          images={post.metadata.images}
-          title={post.metadata.title}
-          description={post.metadata.summary}
-          content={post.content}
-          avatars={post.metadata.team?.map((member) => ({ src: member.avatar })) || []}
-          link={post.metadata.link || ""}
-        />
-      ))}
+      {displayedProjects.map((post, index) => {
+        // Slice images array based on maxImages parameter
+        const imagesToShow = maxImages 
+          ? post.metadata.images.slice(0, maxImages)
+          : post.metadata.images;
+          
+        return (
+          <ProjectCard
+            priority={index < 2}
+            key={post.slug}
+            href={`work/${post.slug}`}
+            images={imagesToShow}
+            title={post.metadata.title}
+            description={post.metadata.summary}
+            content={post.content}
+            avatars={post.metadata.team?.map((member) => ({ src: member.avatar })) || []}
+            link={post.metadata.link || ""}
+          />
+        );
+      })}
     </Column>
   );
 }

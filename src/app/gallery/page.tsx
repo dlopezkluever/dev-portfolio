@@ -1,4 +1,4 @@
-import { Flex, Meta, Schema } from "@once-ui-system/core";
+import { Flex, Meta, Schema, Text, SmartLink } from "@once-ui-system/core";
 import MasonryGrid from "@/components/gallery/MasonryGrid";
 import { baseURL, gallery, person } from "@/resources";
 
@@ -14,7 +14,7 @@ export async function generateMetadata() {
 
 export default function Gallery() {
   return (
-    <Flex maxWidth="l">
+    <Flex maxWidth="l" fillWidth direction="column">
       <Schema
         as="webPage"
         baseURL={baseURL}
@@ -29,6 +29,17 @@ export default function Gallery() {
         }}
       />
       <MasonryGrid />
+      <Flex fillWidth horizontal="center" paddingTop="xl" paddingBottom="l">
+        <Text variant="heading-default-l">
+          To checkout all my Photo/Video work, go to{" "}
+          <SmartLink
+            href="https://lopezklu.myportfolio.com"
+            style={{ fontWeight: "bold", textDecoration: "none" }}
+          >
+            lopezklu.myportfolio.com
+          </SmartLink>
+        </Text>
+      </Flex>
     </Flex>
   );
 }

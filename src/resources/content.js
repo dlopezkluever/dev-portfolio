@@ -21,7 +21,7 @@ const social = [
   {
     name: "LinkedIn",
     icon: "linkedin",
-    link: "https://linkedin.com/in/",
+    link: "https://www.linkedin.com/in/lopezklu",
   },
   {
     name: "X",
@@ -89,123 +89,10 @@ const about = {
       </>
     ),
   },
-  work: {
+  projects: {
     display: true, // set to false to hide this section
-    title: "Work experience",
-    experiences: [
-      {
-        company: "Culture Compass Tours",
-        role: "Tech & Marketing Lead",
-        timeframe: "February 2025 – May 2025",
-        achievements: [
-          <>
-            Co-founded a local tour guide company in Mexico, leading all tech and marketing operations.
-          </>,
-          <>
-            Built a full-stack website using Flask with dynamic booking system, automated email replies, 
-            and SEO-optimized content management.
-          </>,
-          <>
-            Created marketing assets including photography, fliers, and business cards to increase bookings.
-          </>,
-          <>
-            Authored the business plan & investment letters, managed customer support, and occasionally led tours on-site.
-          </>,
-        ],
-        images: [],
-      },
-      {
-        company: "Chicago Bulls College Prep",
-        role: "Physics Professor",
-        timeframe: "July 2023 – May 2024",
-        achievements: [
-          <>
-            Taught 6 courses of Honors & Standard Physics covering University Physics 1 & 2 content.
-          </>,
-          <>
-            Designed new curriculum tailored to optimize student learning outcomes and improve SAT skills.
-          </>,
-          <>
-            Created engaging project & lab assignments to apply theories into real-life examples.
-          </>,
-        ],
-        images: [],
-      },
-      {
-        company: "Wildcat Watch",
-        role: "Executive Producer, Live Events Director, Co-Vice President",
-        timeframe: "August 2019 – July 2022",
-        achievements: [
-          <>
-            Produced video and online material for clients and K-State organizations.
-          </>,
-          <>
-            Directed and distributed live filming of large events within and outside the University.
-          </>,
-          <>
-            Led team meetings and constructed comprehensive production plans & schedules.
-          </>,
-          <>
-            Often responsible for other aspects of production, from lighting & set design to directing & interviewing.
-          </>,
-          <>
-            Produced marketing video content for the University's social media.
-          </>,
-        ],
-        images: [],
-      },
-      {
-        company: "Lopez-Klu Productions",
-        role: "Video Producer",
-        timeframe: "August 2021 - Present",
-        achievements: [
-          <>
-            Founded an independent video freelance service offering affordable production to the community.
-          </>,
-          <>
-            Produced various videos from corporate content to narrative short films to client satisfaction.
-          </>,
-          <>
-            Portfolio available at lopezklu.myportfolio.com
-          </>,
-        ],
-        images: [],
-      },
-      {
-        company: "Entegrity Energy Partners",
-        role: "Energy Engineering Intern",
-        timeframe: "May - September 2021",
-        achievements: [
-          <>
-            Completed investment grade audits of ESSER projects for school districts in KS & MO.
-          </>,
-          <>
-            Presented in client meetings over energy optimization strategies, finances, and installation schedules.
-          </>,
-          <>
-            Authored a comprehensive report detailing the ineffectiveness of Bipolar Ionization.
-          </>,
-        ],
-        images: [],
-      },
-      {
-        company: "Kansas State ELP & U.S. Air Force",
-        role: "Video Producer",
-        timeframe: "August 2020 – January 2021",
-        achievements: [
-          <>
-            Responsible for all video content needed in the making of the online course, "English for Aviation Professionals."
-          </>,
-          <>
-            The video content included interviews & demonstrations, to lessons & simulated scenario footage in aircrafts.
-          </>,
-          <>
-            Being under the strict guidelines of KSU & U.S.A.F, all videos were edited punctually, & to a tee without error.
-          </>,
-        ],
-        images: [],
-      },
-    ],
+    title: "Development Projects",
+    description: "A showcase of my software development projects, from educational platforms to AI-powered applications.",
   },
   studies: {
     display: true, // set to false to hide this section
@@ -225,18 +112,32 @@ const about = {
         title: "Full Stack Development",
         description: (
           <>
-            Proficient in React, React Native, TypeScript, Next.js, and Vite for modern web applications. 
+            Proficient in React, React Native, TypeScript, JavaScript, Next.js, and Vite for modern web applications. 
             Experienced with Python, Flask, and Django for backend development with PostgreSQL integration and RESTful APIs.
+            Skilled in Tailwind CSS and Shadcn UI for responsive design, with Firebase, Supabase, and Redis for backend services.
           </>
         ),
         images: [],
       },
       {
-        title: "Programming Languages",
+        title: "Programming Languages & Frameworks",
         description: (
           <>
-            Strong skills in Python (scripting, automation, web scraping, APIs), JavaScript & C++ 
+            Strong skills in Python (scripting, automation, web scraping, APIs), JavaScript, TypeScript & C++ 
             (interactive front-end and OOP principles), with experience in API integration for third-party services.
+            Proficient in Three.JS for 3D graphics and Phaser for game development.
+          </>
+        ),
+        images: [],
+      },
+      {
+        title: "Rapid Prototyping and Development",
+        description: (
+          <>
+            Experienced in rapid application development, leveraging AI-powered tools to accelerate the project lifecycle. 
+            I specialize in building full-scale applications within a one-week sprint, consistently delivering a minimum 
+            viable product (MVP) in the first two days. This process is followed by a period of refinement, feature expansion, 
+            and final polish to ensure a high-quality product. I've successfully completed over 10 projects using this agile methodology.
           </>
         ),
         images: [],
@@ -286,9 +187,9 @@ const about = {
 
 const work = {
   path: "/work",
-  label: "Work",
-  title: `Projects – Daniel Lopez`,
-  description: `Design and development projects by Daniel Lopez`,
+  label: "Projects",
+  title: `Development Projects – Daniel Lopez`,
+  description: `Software development projects by Daniel Lopez, showcasing expertise in educational platforms, game development, and AI applications`,
   // Create new project pages by adding a new .mdx file to app/work/projects
   // All projects will be listed on the /home and /work routes
 };
@@ -298,48 +199,107 @@ const gallery = {
   label: "Gallery",
   title: `Photo gallery – Daniel Lopez`,
   description: `A photo collection by Daniel Lopez`,
-  // Images by https://lorant.one
-  // These are placeholder images, replace with your own
+  // Images by Daniel Lopez
   images: [
     {
-      src: "/images/gallery/horizontal-1.jpg",
+      src: "/images/gallery/horizontal (1).jpg",
       alt: "image",
       orientation: "horizontal",
     },
     {
-      src: "/images/gallery/horizontal-2.jpg",
+      src: "/images/gallery/horizontal (2).jpg",
       alt: "image",
       orientation: "horizontal",
     },
     {
-      src: "/images/gallery/horizontal-3.jpg",
+      src: "/images/gallery/horizontal (3).jpg",
       alt: "image",
       orientation: "horizontal",
     },
     {
-      src: "/images/gallery/horizontal-4.jpg",
+      src: "/images/gallery/horizontal (4).jpg",
       alt: "image",
       orientation: "horizontal",
     },
     {
-      src: "/images/gallery/vertical-1.jpg",
+      src: "/images/gallery/horizontal (5).jpg",
       alt: "image",
-      orientation: "vertical",
+      orientation: "horizontal",
     },
     {
-      src: "/images/gallery/vertical-2.jpg",
+      src: "/images/gallery/horizontal (6).jpg",
       alt: "image",
-      orientation: "vertical",
+      orientation: "horizontal",
     },
     {
-      src: "/images/gallery/vertical-3.jpg",
+      src: "/images/gallery/horizontal (7).jpg",
       alt: "image",
-      orientation: "vertical",
+      orientation: "horizontal",
     },
     {
-      src: "/images/gallery/vertical-4.jpg",
+      src: "/images/gallery/horizontal (8).jpg",
       alt: "image",
-      orientation: "vertical",
+      orientation: "horizontal",
+    },
+    {
+      src: "/images/gallery/horizontal (9).jpg",
+      alt: "image",
+      orientation: "horizontal",
+    },
+    {
+      src: "/images/gallery/horizontal (10).jpg",
+      alt: "image",
+      orientation: "horizontal",
+    },
+    {
+      src: "/images/gallery/horizontal (11).jpg",
+      alt: "image",
+      orientation: "horizontal",
+    },
+    {
+      src: "/images/gallery/horizontal (12).jpg",
+      alt: "image",
+      orientation: "horizontal",
+    },
+    {
+      src: "/images/gallery/horizontal (13).jpg",
+      alt: "image",
+      orientation: "horizontal",
+    },
+    {
+      src: "/images/gallery/horizontal (14).jpg",
+      alt: "image",
+      orientation: "horizontal",
+    },
+    {
+      src: "/images/gallery/horizontal (15).jpg",
+      alt: "image",
+      orientation: "horizontal",
+    },
+    {
+      src: "/images/gallery/horizontal (16).jpg",
+      alt: "image",
+      orientation: "horizontal",
+    },
+    {
+      src: "/images/gallery/horizontal (17).jpg",
+      alt: "image",
+      orientation: "horizontal",
+    },
+    {
+      src: "/images/gallery/horizontal (18).jpg",
+      alt: "image",
+      orientation: "horizontal",
+    },
+    {
+      src: "/images/gallery/horizontal (19).jpg",
+      alt: "image",
+      orientation: "horizontal",
+    },
+    {
+      src: "/images/gallery/horizontal (20).jpg",
+      alt: "image",
+      orientation: "horizontal",
     },
   ],
 };
