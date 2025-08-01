@@ -1,0 +1,106 @@
+You're asking about the "Read Case Study" links in the work experience section that are giving 404 errors when clicked. Let me trace through how this system works.
+
+The Problem: Missing Project Files
+The "Read Case Study" links are generated in the ProjectCard component, which creates links using the href prop passed to it. ProjectCard.tsx:67-73
+
+The href values come from the Projects component, which constructs them as work/${post.slug} where post.slug is derived from MDX filenames. Projects.tsx:26
+
+How Project Pages Are Generated
+Project pages are handled by the dynamic route at src/app/work/[slug]/page.tsx. page.tsx:12-16 This route:
+
+Uses generateStaticParams() to create static paths for all projects at build time
+Looks for MDX files in the src/app/work/projects directory using getPosts()
+If no matching project file is found, it calls notFound() which triggers the 404 page page.tsx:47-51
+The Root Cause
+The 404 errors occur because there are no actual MDX project files in the src/app/work/projects directory that correspond to the slugs being generated. The getPosts() utility function tries to read MDX files from this directory: utils.ts:25-31
+
+If the directory doesn't exist or contains no .mdx files, getPosts() will return an empty array, causing any project links to result in 404 errors.
+
+How to Fix This
+To resolve the 404 errors, you need to:
+
+Create the projects directory: Ensure src/app/work/projects/ exists
+Add MDX project files: Create .mdx files with proper frontmatter structure like this:
+---  
+title: "Project Title"  
+publishedAt: "2023-01-01"  
+summary: "Project description"  
+images: ["/path/to/image.jpg"]  
+team:  
+  - name: "Team Member"  
+    role: "Designer"   
+    avatar: "/path/to/avatar.jpg"  
+link: "https://external-project-link.com"  
+---
+The filename (without .mdx) becomes the slug used in the URL. For example, my-project.mdx would be accessible at /work/my-project.
+
+Notes
+The work experience section on the about page is separate from the project pages system - it's just static content from src/app/resources/content.js. The "Read Case Study" links in project cards are what connect to the dynamic project pages that need the MDX files to exist.
+
+-----
+
+**Relevant code snippets from templete guide**
+
+src/components/ProjectCard.tsx
+
+   )}
+            <Flex gap="24" wrap>
+              {content?.trim() && (
+                <SmartLink
+                  suffixIcon="arrowRight"
+                  style={{ margin: "0", width: "fit-content" }}
+                  href={href}
+                >
+                  <Text variant="body-default-s">Read case study</Text>
+                </SmartLink>
+              )}
+              {link && (
+                <SmartLink
+
+src/components/work/Projects.tsx
+       <ProjectCard
+          priority={index < 2}
+          key={post.slug}
+          href={`work/${post.slug}`}
+          images={post.metadata.images}
+          title={post.metadata.title}
+          description={post.metadata.summary}
+
+src/app/work/[slug]/page.tsx
+import { Metadata } from "next";
+import { Meta, Schema } from "@/once-ui/modules";
+export async function generateStaticParams(): Promise<{ slug: string }[]> {
+  const posts = getPosts(["src", "app", "work", "projects"]);
+  return posts.map((post) => ({
+    slug: post.slug,
+  }));
+}
+
+export async function generateMetadata({
+.
+.
+.
+  const routeParams = await params;
+  const slugPath = Array.isArray(routeParams.slug) ? routeParams.slug.join('/') : routeParams.slug || '';
+  let post = getPosts(["src", "app", "work", "projects"]).find((post) => post.slug === slugPath);
+
+  if (!post) {
+    notFound();
+  }
+
+  const avatars =
+    post.metadata.team?.map((person) => ({
+
+src/app/utils/utils.ts
+
+import { notFound } from 'next/navigation';
+function getMDXFiles(dir: string) {
+  if (!fs.existsSync(dir)) {
+    notFound();
+  }
+
+  return fs.readdirSync(dir).filter((file) => path.extname(file) === ".mdx");
+}
+
+function readMDXFile(filePath: string) {
+    if (!fs.existsSync(filePath)) {

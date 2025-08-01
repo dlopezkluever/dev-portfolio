@@ -36,8 +36,8 @@ export default function About() {
       items: [],
     },
     {
-      title: about.projects.title,
-      display: about.projects.display,
+      title: about.work.title,
+      display: about.work.display,
       items: [],
     },
     {
@@ -186,14 +186,71 @@ export default function About() {
             </Column>
           )}
 
-          {about.projects.display && (
+          {about.work.display && (
             <>
-              <Heading as="h2" id={about.projects.title} variant="display-strong-s" marginBottom="m">
-                {about.projects.title}
+              <Heading as="h2" id={about.work.title} variant="display-strong-s" marginBottom="m">
+                {about.work.title}
               </Heading>
-              <Text variant="body-default-l" onBackground="neutral-weak" marginBottom="xl">
-                {about.projects.description}
-              </Text>
+              <Column fillWidth gap="l" marginBottom="40">
+                {about.work.experiences.map((experience, index) => (
+                  <Column key={`${experience.company}-${experience.role}-${index}`} fillWidth>
+                    <Flex fillWidth horizontal="space-between" vertical="end" marginBottom="4">
+                      <Text id={experience.company} variant="heading-strong-l">
+                        {experience.company}
+                      </Text>
+                      <Text variant="heading-default-xs" onBackground="neutral-weak">
+                        {experience.timeframe}
+                      </Text>
+                    </Flex>
+                    <Text variant="body-default-s" onBackground="brand-weak" marginBottom="m">
+                      {experience.role}
+                    </Text>
+                    <Column as="ul" gap="16">
+                      {experience.achievements.map((achievement: JSX.Element, achievementIndex: number) => (
+                        <Text
+                          as="li"
+                          variant="body-default-m"
+                          key={`${experience.company}-${achievementIndex}`}
+                        >
+                          {achievement}
+                        </Text>
+                      ))}
+                    </Column>
+                    {experience.website && (
+                      <Flex marginTop="m">
+                        <SmartLink
+                          suffixIcon="arrowUpRightFromSquare"
+                          style={{ margin: "0", width: "fit-content" }}
+                          href={`https://${experience.website}`}
+                        >
+                          <Text variant="body-default-s">Visit Website</Text>
+                        </SmartLink>
+                      </Flex>
+                    )}
+                    {experience.images.length > 0 && (
+                      <Flex fillWidth paddingTop="m" paddingLeft="40" wrap>
+                        {experience.images.map((image, imageIndex) => (
+                          <Flex
+                            key={imageIndex}
+                            border="neutral-medium"
+                            radius="m"
+                            minWidth={image.width}
+                            height={image.height}
+                          >
+                            <SmartImage
+                              enlarge
+                              radius="m"
+                              sizes={image.width.toString()}
+                              alt={image.alt}
+                              src={image.src}
+                            />
+                          </Flex>
+                        ))}
+                      </Flex>
+                    )}
+                  </Column>
+                ))}
+              </Column>
             </>
           )}
 
