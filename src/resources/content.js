@@ -50,12 +50,12 @@ const home = {
   headline: <>Building innovative solutions through code and creativity</>,
   featured: {
     display: true,
-    title: <>Recent project: <strong className="ml-4">Culture Compass Tours</strong></>,
-    href: "/work/culture-compass-tours",
+    title: <>Contact Me - <strong className="ml-4">Lopezklu@yahoo.com</strong></>,
+    href: "mailto:Lopezklu@yahoo.com",
   },
   subline: (
     <>
-      I'm Daniel, a Full Stack Developer with a unique background in mechanical engineering, education 
+      I&apos;m Daniel, a Full Stack Developer with a unique background in mechanical engineering, education 
       and video production. I build web applications and digital experiences that solve real problems.
     </>
   ),
@@ -143,7 +143,7 @@ const about = {
         timeframe: "August 2019 – July 2022",
         role: "Executive Producer, Live Events Director, Co-Vice President",
         achievements: [
-          <>Spearheaded video production operations for Kansas State University's premier media organization, managing $50K+ annual budget and coordinating 15+ student team members across multiple concurrent projects</>,
+          <>Spearheaded video production operations for Kansas State University&apos;s premier media organization, managing $50K+ annual budget and coordinating 15+ student team members across multiple concurrent projects</>,
           <>Directed live broadcast coverage of 25+ major university events annually, including sporting events, graduation ceremonies, and conferences, reaching audiences of 10,000+ viewers per event</>,
           <>Orchestrated multi-camera production workflows utilizing professional equipment including 4K cameras, wireless audio systems, and live streaming technology for real-time distribution across digital platforms</>,
           <>Earned Platinum AVA Digital Award (First Place) for Commercial/Promotional content and Gold Award (Top 3) for Long Form Video Production, representing technical directing excellence</>,
@@ -172,7 +172,7 @@ const about = {
         timeframe: "August 2020 – January 2021",
         role: "Video Producer",
         achievements: [
-          <>Executed complete video production pipeline for specialized military training course "English for Aviation Professionals," creating 40+ instructional modules serving international pilot training programs</>,
+          <>Executed complete video production pipeline for specialized military training course &quot;English for Aviation Professionals,&quot; creating 40+ instructional modules serving international pilot training programs</>,
           <>Coordinated complex filming operations in active aircraft environments, managing safety protocols while capturing high-definition instructional content using specialized aviation-grade equipment</>,
           <>Produced comprehensive educational materials including expert interviews, procedural demonstrations, and simulated emergency scenarios, meeting stringent military content standards and security clearance requirements</>,
           <>Delivered zero-defect final products under accelerated timeline, maintaining 100% adherence to U.S. Air Force content guidelines and Kansas State University academic standards</>,
@@ -217,7 +217,7 @@ const about = {
             <br /><br />
             <strong>Honors & Awards:</strong>
             <br />• K-State Launch Entrepreneurship Competition Spring 2021 Champion: SLENT
-            <br />• Putman Scholar - Kansas State University's Top Academic Scholarship
+            <br />• Putman Scholar - Kansas State University&apos;s Top Academic Scholarship
             <br />• Hansen Scholar - Dane G. Hansen Foundation Recognition
             <br />• AVA Digital Awards 2021-22: Platinum (First Place) - Commercials/Promotion; Editor
             <br />• AVA Digital Awards 2021-22: Gold (Top 3) - Long Form Video Production; Technical Director
@@ -269,7 +269,7 @@ const about = {
             Experienced in rapid application development, leveraging AI-powered tools to accelerate the project lifecycle. 
             I specialize in building full-scale applications within a one-week sprint, consistently delivering a minimum 
             viable product (MVP) in the first two days. This process is followed by a period of refinement, feature expansion, 
-            and final polish to ensure a high-quality product. I've successfully completed over 10 projects using this agile methodology.
+            and final polish to ensure a high-quality product. I&apos;ve successfully completed over 10 projects using this agile methodology.
           </>
         ),
         images: [],

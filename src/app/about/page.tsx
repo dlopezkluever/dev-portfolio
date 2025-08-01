@@ -234,14 +234,19 @@ export default function About() {
                             key={imageIndex}
                             border="neutral-medium"
                             radius="m"
+                            //@ts-ignore
                             minWidth={image.width}
+                            //@ts-ignore
                             height={image.height}
                           >
-                            <SmartImage
+                            <Media
                               enlarge
                               radius="m"
+                              //@ts-ignore
                               sizes={image.width.toString()}
+                              //@ts-ignore
                               alt={image.alt}
+                              //@ts-ignore
                               src={image.src}
                             />
                           </Flex>
