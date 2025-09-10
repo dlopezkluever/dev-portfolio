@@ -114,9 +114,9 @@ const about = {
         timeframe: "February 2025 – May 2025",
         role: "Tech & Marketing Lead",
         achievements: [
-          <>Engineered full-stack web application using Flask framework, implementing PostgreSQL database with 99.9% uptime and automated email response system serving 200+ customer inquiries monthly</>,
+          <>Engineered full-stack web application using Flask framework, implementing PostgreSQL database with 99.9% uptime and automated email response system serving 50+ customer inquiries monthly</>,
           <>Developed dynamic booking system with real-time availability checking, payment processing integration, and automated confirmation workflows, increasing booking efficiency by 75%</>,
-          <>Architected SEO-optimized content management system resulting in 150% increase in organic search traffic within first 90 days</>,
+          <>Architected SEO-optimized content management system resulting in monumental increase in organic search traffic</>,
           <>Created comprehensive brand identity including professional photography portfolio, print marketing materials, and digital assets, establishing cohesive visual presence across 5+ marketing channels</>,
           <>Authored detailed business plan and investor presentation materials, successfully securing initial funding and operational partnerships for startup launch</>,
           <>Managed end-to-end customer support operations, maintaining 95% customer satisfaction rating while handling technical troubleshooting and booking modifications</>
@@ -131,10 +131,9 @@ const about = {
           <>Transformed underperforming physics program, elevating school ranking from 18th (second-worst) to 3rd place in Noble Schools District standardized physics assessments within single academic year</>,
           <>Instructed 6 advanced physics courses serving 120+ students across Honors and Standard tracks, covering university-level mechanics, thermodynamics, electricity & magnetism, and modern physics concepts</>,
           <>Designed comprehensive curriculum integrating SAT physics preparation strategies, resulting in 25% improvement in student standardized test scores and 90% college acceptance rate</>,
-          <>Developed innovative laboratory experiments and project-based assignments connecting theoretical concepts to real-world applications, increasing student engagement scores by 40%</>,
+          <>Developed innovative laboratory experiments and project-based assignments connecting theoretical concepts to real-world applications</>,
           <>Implemented technology-enhanced learning tools including simulation software and interactive demonstrations, improving conceptual understanding metrics by 35%</>,
-          <>Mentored students in advanced STEM pathways, with 85% of students choosing to pursue physics or engineering majors in college</>,
-          <>Collaborated with department faculty to establish physics competition team, achieving top-3 regional placement in Illinois High School Physics Tournament</>
+          <>Mentored students in advanced STEM pathways, with 85% of said students choosing to pursue engineering, physics, math or computer science majors in college</>,
         ],
         images: []
       },
