@@ -125,7 +125,7 @@ const about = {
       },
       {
         company: "Chicago Bulls College Prep",
-        timeframe: "July 2023 – May 2024",
+        timeframe: "July 2023 – January 2024",
         role: "Physics Professor",
         achievements: [
           <>Transformed underperforming physics program, elevating school ranking from 18th (second-worst) to 3rd place in Noble Schools District standardized physics assessments within single academic year</>,
@@ -154,8 +154,8 @@ const about = {
       },
       {
         company: "Entegrity Energy Partners",
-        timeframe: "May - September 2021",
-        role: "Energy Engineering Intern",
+        timeframe: "May - Sept 2021 | May - Dec 2022",
+        role: "Energy Engineerer",
         achievements: [
           <>Conducted comprehensive investment-grade energy audits for 12+ school districts across Kansas and Missouri, evaluating HVAC systems, lighting infrastructure, and building envelope efficiency using advanced modeling software</>,
           <>Analyzed energy consumption data and calculated potential savings totaling $2.3M annually across audited facilities, presenting findings to district administrators and engineering teams</>,
