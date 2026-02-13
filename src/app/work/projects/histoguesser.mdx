@@ -1,0 +1,77 @@
+---
+title: "HistoGuesser"
+slug: "histoguesser"
+publishedAt: "2025-01-22"
+summary: "Web-based geography and history guessing game where players identify historical figures by guessing Who (name), Where (map location), and When (birth year) across Daily Challenge, Free Play, and real-time Multiplayer modes"
+images: [
+  "/histoguesser/HG-1.PNG",
+  "/histoguesser/HG-2.PNG",
+  "/histoguesser/HG-3.PNG",
+  "/histoguesser/HG-4.PNG",
+  "/histoguesser/HG-5.PNG"
+]
+tag: "Game Development"
+team: []
+link: "https://whodatbe.vercel.app/"
+github: "https://github.com/dlopezkluever/HistoGuesser"
+---
+
+## Project Overview
+
+**HistoGuesser** is an interactive web-based game that challenges players to identify historical figures through portraits, photos, and sculptures. Each round presents a figure image and asks players to guess three elements: **Who** the person is (name), **Where** they originated from (map location via interactive Leaflet.js map), and **When** they were born (year via timeline slider spanning 1000 BCE to 2025 CE). The game features a distinctive Film Noir themed UI with skeuomorphic design elements.
+
+## Game Modes
+
+### Daily Challenge
+A globally shared 10-round challenge released daily at midnight UTC. All players see the same figures in the same order with one attempt per day. Final scores are submitted to a global leaderboard with streak tracking for consecutive days played.
+
+### Free Play
+Casual practice mode with unlimited games of 10 random figures each. No account required, no time pressure, and skip/hint buttons available for a relaxed learning experience.
+
+### Multiplayer
+Real-time competitive lobbies supporting 2-8 players. A host creates a game with a unique 6-character room code, and all players advance together through 10 rounds with a 45-second timer per round. Round-by-round leaderboards and a final winner announcement keep the competition engaging.
+
+## Scoring System
+
+Each round has a maximum of **2,500 points** across four components:
+
+- **Location Accuracy** (0-800 points): Haversine distance calculation with linear decay (~8,000 km off = 0 points)
+- **Temporal Accuracy** (0-800 points): Year difference scoring (~400 years off = 0 points)
+- **Name Accuracy** (0-800 points): Tiered fuzzy matching using Levenshtein distance with alias support (800/600/400/200/0)
+- **Speed Bonus** (0-100 points): Time-based decay in Daily Challenge and Multiplayer modes
+
+**Game Maximum:** 25,000 points (10 rounds)
+
+## Technical Implementation
+
+### Frontend Architecture
+- **Vue 3.5 + TypeScript 5.6**: Component-based reactive UI with type safety
+- **Vite 7**: Fast build tool with optimized HMR for rapid development
+- **TailwindCSS 3.4**: Utility-first styling for the Film Noir themed interface
+- **Leaflet.js 1.9**: Interactive world map with OpenStreetMap tiles for location guessing
+- **Pinia**: Lightweight Vue-compatible state management
+
+### Backend & Infrastructure
+- **Supabase**: PostgreSQL database, authentication (email/password), real-time channels for multiplayer, and image storage
+- **Supabase Realtime**: Powers the multiplayer lobby system with server-authoritative timing
+- **Vercel**: Frontend hosting with edge CDN for global performance
+
+### Database Design
+- **Core Tables**: Figures with images/metadata, users synced with Supabase Auth, player stats with streak tracking, daily challenge scores
+- **Multiplayer Tables**: Lobbies with room codes, player connections, and round-by-round submissions
+- **Row Level Security**: Enforced across all tables for data protection
+
+## Key Features
+
+- **Cross-Device Play**: Responsive layouts for desktop and mobile with all game elements visible on a single screen
+- **Fuzzy Name Matching**: Case-insensitive matching with alias support and Levenshtein distance for typo tolerance
+- **Global Leaderboards**: Top 100 daily rankings with streak tracking and player statistics
+- **Real-Time Multiplayer**: WebSocket-based lobby system with auto-advance on timer expiry or full submission
+- **Educational Value**: Fun fact blurbs for each historical figure revealed after guessing
+
+## Technology Stack
+
+**Frontend**: Vue 3.5, TypeScript 5.6, Vite 7, TailwindCSS 3.4, Leaflet.js, Pinia
+**Backend**: Supabase (PostgreSQL, Auth, Realtime, Storage)
+**Hosting**: Vercel (Frontend CDN), Supabase (Backend Services)
+**Key Libraries**: Leaflet.Geodesic (distance calc), Day.js (dates), Levenshtein/Fuse.js (fuzzy matching)
