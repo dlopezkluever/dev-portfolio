@@ -82,7 +82,7 @@ const about = {
     title: "Introduction",
     description: (
       <>
-        Daniel is an Austin-based Full Stack Developer with a unique blend of technical expertise and creative skills. 
+        Daniel is an American Full Stack Developer with a unique blend of technical expertise and creative skills. 
         With a background in mechanical engineering from Kansas State University and extensive experience in both 
         software development and video production, he brings a multidisciplinary approach to solving complex problems 
         and building innovative digital solutions.
@@ -199,7 +199,7 @@ const about = {
   },
   studies: {
     display: true, // set to false to hide this section
-    title: "Education & Academic Excellence",
+    title: "Academics",
     institutions: [
       {
         name: "Kansas State University",
@@ -237,7 +237,7 @@ const about = {
   },
   technical: {
     display: true, // set to false to hide this section
-    title: "Technical skills",
+    title: "Technical Skills",
     skills: [
       {
         title: "Full Stack Development",
