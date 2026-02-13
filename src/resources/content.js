@@ -91,7 +91,7 @@ const about = {
   },
   work: {
     display: true, // set to false to hide this section
-    title: "Work Experience",
+    title: "Experience",
     description: "Professional experience across technology, education, and creative industries.",
     experiences: [
       {
@@ -110,16 +110,16 @@ const about = {
         images: []
       },
       {
-        company: "Culture Compass Tours",
-        timeframe: "February 2025 – May 2025",
-        role: "Tech & Marketing Lead",
+        company: "Independent Software Engineering & Technical Consulting",
+        timeframe: "25 hr/wk | Dec 2024 – May 2025 | Sep 2025 – Nov 2025",
+        role: "Independent Software Engineer",
         achievements: [
-          <>Engineered full-stack web application using Flask framework, implementing PostgreSQL database with 99.9% uptime and automated email response system serving 50+ customer inquiries monthly</>,
+          <>Led end-to-end technical execution across multiple independent projects, including requirements gathering, system architecture, backend development, frontend implementation, deployment, and ongoing iteration</>,
+          <>Designed, built, and deployed full-stack web applications and internal tools for small organizations and local businesses, ranging from lightweight marketing sites to production-grade booking, CRM, and automation systems</>,
+          <>Applied AI-first development workflows to rapidly prototype, ship, and refine applications, leveraging GPT-based tools for code generation, customer communication, internal operations, and content creation</>,
+          <>Engineered full-stack web application for a tour guide startup in Mexico City (Culture Compass Tours) using Flask and PostgreSQL, with automated email response system serving 50+ customer inquiries monthly</>,
           <>Developed dynamic booking system with real-time availability checking, payment processing integration, and automated confirmation workflows, increasing booking efficiency by 75%</>,
-          <>Architected SEO-optimized content management system resulting in monumental increase in organic search traffic</>,
-          <>Created comprehensive brand identity including professional photography portfolio, print marketing materials, and digital assets, establishing cohesive visual presence across 5+ marketing channels</>,
-          <>Authored detailed business plan and investor presentation materials, successfully securing initial funding and operational partnerships for startup launch</>,
-          <>Managed end-to-end customer support operations, maintaining 95% customer satisfaction rating while handling technical troubleshooting and booking modifications</>
+          <>Created comprehensive brand identity and marketing materials for clients, including SEO-optimized content management, professional photography, print collateral, and digital assets across multiple channels</>,
         ],
         images: []
       },
