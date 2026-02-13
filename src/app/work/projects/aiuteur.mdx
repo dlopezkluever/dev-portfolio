@@ -1,0 +1,104 @@
+---
+title: "Aiuteur"
+slug: "aiuteur"
+publishedAt: "2025-01-25"
+summary: "Narrative-to-AI-film pipeline web application that transforms written stories into AI-generated short films through a deterministic 12-stage workflow with full iterative control, style consistency, and cost-optimized video generation"
+images: [
+  "/aiuteur/A-00.png",
+  "/aiuteur/A-1.PNG",
+  "/aiuteur/A-2.PNG",
+  "/aiuteur/A-3.PNG",
+  "/aiuteur/A-4.PNG",
+  "/aiuteur/A-5.PNG",
+  "/aiuteur/A-6.PNG",
+  "/aiuteur/A-7.PNG"
+]
+tag: "AI Film"
+team: []
+github: "https://github.com/dlopezkluever/wizardirector"
+---
+
+## Project Overview
+
+**Aiuteur** is a web application that automates the transformation of written narratives into AI-generated short films through a strictly deterministic, cost-efficient, multi-stage workflow. The platform's core strength is **story consolidation and management** — the largest engineering effort focuses on the stability and iterative control of narrative structure and visual style, with video generation as the deterministic output of that process.
+
+## The Problem
+
+Current AI video generation tools suffer from critical limitations:
+- **Non-deterministic output** — inconsistent characters, jump cuts, and scene-to-scene drift
+- **Expensive iteration** — users pay for high-volume, low-quality generations (the "slot machine" model)
+- **No narrative continuity** — tools treat each clip in isolation with no structural awareness
+- **Creative drift** — style and tone shift unpredictably across generated segments
+
+## The Solution (The Inversion)
+
+Aiuteur inverts the standard AI video workflow:
+
+1. **Plan** — The story is locked using a Beat Sheet structural anchor
+2. **Anchor** — Visual boundaries (Start/End Frames) of every 8-second shot are locked using a cheaper image model
+3. **Generate** — Expensive video compute is used only once per shot, generating the bridge content between two approved anchor frames
+
+This guarantees deterministic consistency and cost optimization.
+
+## 12-Stage Pipeline Architecture
+
+### Phase A: Global Narrative Engine (Stages 1–5)
+
+- **Stage 1 — Input & Initialization**: Four input modes (Expansion, Condensation, Transformation, Script Skip) with Writing Style Capsule selection and global project parameters (target length, content rating, genre/tone)
+- **Stage 2 — Treatment Generation**: AI generates 3 distinct prose treatments with targeted regeneration via text highlighting, manual editability, and full rewrite capability
+- **Stage 3 — The Beat Sheet**: Structural anchor breaking the treatment into 15–30 draggable, reorderable narrative beats with AI brainstorm/expansion per beat — the most critical structural lock in the pipeline
+- **Stage 4 — Descriptive Master Script**: Fully formatted film script with vivid visual descriptions for characters, settings, props, and mise-en-scène — serves as the Global Narrative Truth
+- **Stage 5 — Asset Definition & Style Lock**: Single comprehensive LLM extraction of all characters, props, and locations with visual style capsule selection, master asset image key generation, and scene dependency mapping
+
+### Phase B: Production Engine (Stages 6–12)
+
+- **Stage 6 — Script Hub**: Scene navigation with status indicators (Draft, Shot List Locked, Frames Locked, Video Complete, Outdated) and continuity risk analysis
+- **Stage 7 — Technical Shot List**: Scene broken into 8-second shots with mandatory fields (Shot ID, Dialogue, Action, Characters, Setting, Camera) with shot splitting/merging and field coherence agents
+- **Stage 8 — Visual & Character Definition**: Scene-specific asset instances with historical reference carousel, multiple generation attempts, status tags (muddy, bloody, torn), and "Use Master Asset As-Is" fast-path
+- **Stage 9 — Prompt Segmentation**: Separated Frame Prompts (visual, for image gen) and Video Prompts (action/audio, for video gen) with Veo3-formatted output
+- **Stage 10 — Frame Generation**: Anchor frame creation with Quick Mode (bulk) and Control Mode (sequential approval), region-level inpainting for continuity fixes, and visual rearview mirror
+- **Stage 11 — Confirmation & Gatekeeping**: Economic checkpoint with cost breakdown, frame pair review, and final prompt snapshots before expensive video generation
+- **Stage 12 — Video Generation & Review**: Veo3-powered generation with issue classification routing back to the appropriate upstream stage for iteration
+
+## Key Systems
+
+### Context Management
+Global vs. Local context division prevents LLM hallucinations and token overflow. Global context (Beat Sheet, Style Capsules, Master Assets) persists across the entire project; Local context (current scene script, shot list, previous scene end-state) is scoped to the active scene lifecycle.
+
+### Style Capsule System
+Writing Style Capsules guide narrative tone through explicit style imitation. Visual Style Capsules / Style Anchors enforce consistent visual output through design pillars (Color Palette, Mood, Medium, Lighting, Camera Language) and reference imagery.
+
+### Story Timelines (Git-Style Branching)
+Full version control with mandatory branching when regenerating the Master Script from an edited Beat Sheet. Global invalidation marks all Phase B artifacts on a new branch as requiring regeneration. Local invalidation cascades continuity breaks through downstream scenes. An Artifact Vault stores all generated assets organized by branch and scene.
+
+### Stateful Asset Management
+Assets retain state across scenes with inheritance logic — each scene defaults to the final state of the asset from the previous scene, with per-scene modifications creating new tracked instances with condition metadata tags.
+
+## Technical Implementation
+
+### Architecture
+- **Frontend**: Web application with rich text editing, drag-and-drop interactions, interactive carousels, and real-time progress streaming
+- **Backend**: Supabase PostgreSQL with JSONB columns for flexible stage artifact storage and relational integrity
+- **AI Pipeline**: GPT-4 for narrative generation and asset extraction, Nano Banana for cost-efficient anchor frame generation, Google Veo3 for final video production
+- **Real-time Updates**: WebSocket-based progress streaming for simulation and render status
+
+### Performance Targets
+- Phase A text generation: < 5 seconds per iteration
+- Stage 10 frame generation: < 15 seconds per frame pair
+- Stage 12 video generation: Background processing with notification alerts
+
+### Data Strategy
+- Single comprehensive asset extraction at Stage 5 eliminates redundant AI calls across subsequent stages
+- Scene dependency pre-population enables instant context loading without real-time extraction
+- Git-style branching preserves all historical states with non-destructive version management
+
+## Export & Post-Production
+
+The platform supports professional export with individual 8-second clips, NLE XML/EDL files for DaVinci Resolve and Premiere Pro, standardized naming conventions, and optional separated audio stems — bridging AI generation with traditional post-production workflows.
+
+## Technology Stack
+
+**AI Models**: GPT-4 (Narrative), Nano Banana (Image Generation), Google Veo3 (Video Generation)
+**Database**: Supabase PostgreSQL with JSONB columns
+**Real-time**: WebSocket progress streaming and notification system
+**Version Control**: Git-style branching with Artifact Vault and Story Timelines
