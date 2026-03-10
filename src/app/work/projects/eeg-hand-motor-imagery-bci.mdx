@@ -1,0 +1,78 @@
+---
+title: "EEG Hand Motor Imagery BCI"
+slug: "eeg-hand-motor-imagery-bci"
+publishedAt: "2026-03-10"
+summary: "Complete EEG-based brain-computer interface pipeline that decodes left vs. right hand motor imagery from 64-channel signals using signal preprocessing, multiple feature extraction strategies, and three classification approaches"
+images: [
+  "/eeg-hand-motor-imagery-bci/001.PNG",
+  "/eeg-hand-motor-imagery-bci/003-model-comparison.PNG",
+  "/eeg-hand-motor-imagery-bci/002-confusion-matrix.png",
+  "/eeg-hand-motor-imagery-bci/004-roc-curve.png",
+  "/eeg-hand-motor-imagery-bci/005-feature-importance.png",
+  "/eeg-hand-motor-imagery-bci/006-training-curves.png"
+]
+tag: "AI/ML"
+team: []
+github: "https://github.com/dlopezkluever/EEG-Hand-Motion-Decoder"
+---
+
+## Project Overview
+
+**EEG Hand Motor Imagery BCI** is a complete brain-computer interface pipeline that decodes left vs. right hand motor imagery from the PhysioNet EEGBCI dataset. The system processes raw 64-channel EEG signals at 160 Hz through a rigorous preprocessing and feature extraction pipeline, then classifies motor imagery intent using three distinct approaches -- Logistic Regression with PSD band power features, Logistic Regression with Common Spatial Pattern features, and an EEGNet convolutional neural network operating on raw epochs. All models are evaluated with stratified 10-fold cross-validation across up to 109 subjects.
+
+## Pipeline Architecture
+
+The pipeline follows a structured signal-to-classification flow:
+
+- **Signal Acquisition**: Raw 64-channel EEG at 160 Hz from PhysioNet EEGBCI (109 subjects, motor imagery runs 3 and 7)
+- **Preprocessing**: Bandpass filtering (1-40 Hz FIR), notch filtering (60/120 Hz), Common Average Reference, optional ICA artifact removal with automatic EOG/EMG component detection
+- **Epoch Extraction**: Task events T1 (left hand) and T2 (right hand) windowed from -0.5s to 4.0s around onset with baseline correction
+- **Optional ROI Selection**: Restriction to 7 motor cortex channels (C3, C4, Cz, FC3, FC4, CP3, CP4) for focused analysis
+
+Three parallel feature pathways feed into their respective classifiers, enabling direct comparison of feature representation strategies for motor imagery decoding.
+
+## Feature Extraction
+
+### Pathway A: PSD Band Power (384 features)
+Welch power spectral density estimation across six frequency bands -- Delta (1-4 Hz), Theta (4-8 Hz), Mu (8-12 Hz), Low Beta (13-20 Hz), High Beta (20-30 Hz), and Low Gamma (30-40 Hz) -- computed per channel, yielding a 384-dimensional feature vector (6 bands x 64 channels).
+
+### Pathway B: Common Spatial Patterns (4 features)
+CSP spatial filtering extracts 4 components that maximize the variance ratio between left and right motor imagery classes, producing a compact 4-dimensional log-variance feature vector. CSP is specifically designed for two-class motor imagery discrimination and consistently outperformed PSD features.
+
+### Pathway C: Raw Epochs (64 x 721)
+Per-channel z-scored raw epoch data fed directly into EEGNet, allowing the CNN to learn spatial and temporal features end-to-end without manual feature engineering.
+
+## Classification Models
+
+### Logistic Regression (Baseline)
+L-BFGS solver with balanced class weights, maximum 1000 iterations, and optional hyperparameter tuning via GridSearchCV over regularization strengths C = [0.001, 0.01, 0.1, 1.0, 10.0]. Evaluated with both PSD and CSP feature inputs.
+
+### EEGNet (CNN)
+Implementation of the compact convolutional architecture from Lawhern et al. (2018) with temporal convolution, depthwise convolution, separable convolution, and dense classification layers. Key parameters: F1=8, F2=16, D=2, dropout=0.5. Trained with Adam optimizer (lr=0.001), cross-entropy loss, and early stopping (patience=30). Supports optional data augmentation via Gaussian noise and temporal jitter.
+
+## Results
+
+The best-performing model was **LR + CSP at 87.8% mean accuracy** (AUC-ROC: 0.927) across 3 subjects with the full feature pipeline (ICA + tuning + augmentation):
+
+- **LR + CSP**: 87.8% accuracy, 0.877 F1, 0.927 AUC-ROC
+- **EEGNet + Raw**: 77.8% accuracy, 0.776 F1, 0.858 AUC-ROC
+- **LR + PSD**: 55.6% accuracy, 0.554 F1, 0.610 AUC-ROC
+
+CSP features consistently dominated across all subjects, which is expected given that CSP is purpose-built to maximize inter-class variance for motor imagery tasks. Per-subject accuracy for LR + CSP ranged from 73.3% to 96.7%. Leave-One-Subject-Out cross-validation demonstrated the known challenge of inter-subject variability in EEG-based BCIs, with cross-subject generalization dropping to 61.1% for PSD features.
+
+## Evaluation Framework
+
+- **Within-subject**: 10-fold stratified cross-validation
+- **Cross-subject**: Leave-One-Subject-Out (LOSO) cross-validation
+- **Metrics**: Accuracy, Precision, Recall, F1 (per-class and macro), AUC-ROC, Cohen's Kappa
+- **Statistical tests**: Paired t-tests between model accuracies
+- **Visualizations**: Confusion matrices, ROC curves, topographic scalp maps, PSD comparison plots, ERP butterfly plots, training curves, and feature importance rankings
+
+## Technology Stack
+
+**Language**: Python
+**ML/DL Frameworks**: PyTorch (EEGNet), scikit-learn (Logistic Regression, CSP, metrics)
+**Signal Processing**: MNE-Python (EEG preprocessing, filtering, ICA, epoching, visualization)
+**Data**: PhysioNet EEGBCI dataset (109 subjects, 64-channel, 160 Hz)
+**Experiment Tracking**: MLflow integration for hyperparameter and metric logging
+**Visualization**: Matplotlib (confusion matrices, ROC curves, topomaps, training curves)
