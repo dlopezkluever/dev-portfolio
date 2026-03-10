@@ -4,15 +4,15 @@ slug: "elmerfem-for-edu"
 publishedAt: "2025-01-24"
 summary: "Educational web platform for Finite Element Analysis using Dockerized ElmerFEM, making complex engineering simulations accessible to high school students"
 images: [
-  "/elmer-for-edu/Fea results viz.PNG", 
-  "/elmer-for-edu/Fea mesh results viz.PNG", 
-  "/elmer-for-edu/welcome.PNG", 
-  "/elmer-for-edu/material lib.PNG",
-  "/elmer-for-edu/sim sphere.PNG",
-  "/elmer-for-edu/sim cylin.PNG",
-  "/elmer-for-edu/heat trans.PNG",
-  "/elmer-for-edu/p-5.PNG",
-  "/elmer-for-edu/mesh_info.PNG"
+ "/elmer-for-edu/Fea results viz.PNG", 
+ "/elmer-for-edu/Fea mesh results viz.PNG", 
+ "/elmer-for-edu/welcome.PNG", 
+ "/elmer-for-edu/material lib.PNG",
+ "/elmer-for-edu/sim sphere.PNG",
+ "/elmer-for-edu/sim cylin.PNG",
+ "/elmer-for-edu/heat trans.PNG",
+ "/elmer-for-edu/p-5.PNG",
+ "/elmer-for-edu/mesh_info.PNG"
 ]
 tag: "Education"
 team: []
@@ -36,22 +36,22 @@ Traditional FEA software presents significant barriers to educational use:
 
 Our platform creates a simplified, locally-deployed educational layer on top of Dockerized ElmerFEM that features:
 
-### **🎓 Student-Centered Design**
+### **Student-Centered Design**
 - **Large, Clear Interface Elements**: Bigger buttons and prominent actions designed for educational use
 - **Guided Workflow**: Step-by-step progression from template selection through results analysis
 - **Educational Abstraction**: Complex FEA concepts presented through simplified forms and visual feedback
 - **Real-time Guidance**: Immediate validation, progress monitoring, and contextual help
 
-### **🔬 Core Educational Features**
+### **Core Educational Features**
 - **Pre-built Simulation Templates**: Heat transfer in rods, cantilever beam analysis, plate stress studies
 - **Interactive 3D Mesh Preview**: Real-time visualization with quality metrics and heat mapping
 - **Material Library**: 8 predefined materials (Steel, Aluminum, Copper) with full property viewing
 - **Progress Streaming**: WebSocket-based real-time updates during simulation execution
 - **Results Visualization**: Interactive 3D plots with temperature distributions and stress contours
 
-### **⚙️ Technical Implementation**
+### **Technical Implementation**
 - **React Frontend**: Modern web interface with neumorphism design using Tailwind CSS
-- **FastAPI Backend**: Python-based API with async execution and Docker orchestration  
+- **FastAPI Backend**: Python-based API with async execution and Docker orchestration 
 - **Fortran Integration**: High-performance mesh generation with educational enhancements
 - **Docker Architecture**: Complete local deployment - no cloud services, no authentication required
 
@@ -70,7 +70,7 @@ Built a comprehensive Fortran 2008 mesh generation library with:
 - **Progress Instrumentation**: Modified ElmerSolver.F90 to emit parseable progress information
 - **3D Visualization**: Three.js WebGL integration with interactive controls
 
-### **Local-First Architecture** 
+### **Local-First Architecture**
 - **Privacy Guaranteed**: No student data ever leaves the local machine
 - **Offline Capable**: Works without internet connectivity after initial setup
 - **Simple Deployment**: `git clone` → `docker compose up` → Open browser
